@@ -5,17 +5,29 @@ from numpy.linalg import inv
 
 
 class DoublePendulum(Scene):
-    def __init__(self):
+    def __init__(
+        self,
+        m1=2,
+        m2=5,
+        l1=2,
+        l2=1,
+        theta1=pi,
+        theta2=pi / 2,
+        g=9.81,
+        dissipation_factor=0.999999,
+        time_max=30,
+        trail_seconds=0.5,
+    ):
         # Masses of the ball
-        self.m1 = 2
-        self.m2 = 5
+        self.m1 = m1
+        self.m2 = m2
         # Length of the rigid massless rods
-        self.l1 = 2
-        self.l2 = 1
+        self.l1 = l1
+        self.l2 = l2
         # Acceleration due to gravity
-        self.g = 9.81
+        self.g = g
         # Factor to decrease the velocity by
-        self.dissipation_factor = 0.999999
+        self.dissipation_factor = dissipation_factor
 
         # timestep
         self.dt = 0.0001
@@ -25,11 +37,12 @@ class DoublePendulum(Scene):
         # do not change this
         self.runtime = 1 / config.frame_rate
         # time_max represents for how long (in seconds) the overall animation should run
-        self.time_max = 30
+        self.time_max = time_max
         # Initial angles of the masses
-        self.theta1, self.theta2 = (pi, pi / 2)
+        self.theta1 = theta1
+        self.theta2 = theta2
         # number of seconds before current time to show trail
-        self.trail_seconds = 0.5
+        self.trail_seconds = trail_seconds
 
         super().__init__()
 
